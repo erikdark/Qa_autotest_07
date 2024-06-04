@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Установка значения для числа a в задании
     let challengeElement = document.getElementById('challenge');
-    challengeElement.textContent = `What is ${a} + ?`;
+    challengeElement.textContent = `Что будет ${a} + ?`;
 
     // Таймер на 3 секунды
     let timeLeft = 3;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (timeLeft <= 0) {
             clearInterval(timer);
             document.getElementById('submitBtn').disabled = true;
-            timerElement.textContent = "Time's up!";
+            timerElement.textContent = "Время вышло!!!";
         } else {
             timerElement.textContent = timeLeft;
         }
