@@ -57,31 +57,52 @@ button {
     </div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-    // Случайное число a
+    // Генерация случайного числа a и числа b для атрибута картинки
     let a = Math.floor(Math.random() * 100);
-    // Извлечение числа b из атрибута data-b изображения
-    let numberImage = document.getElementById('numberImage');
     let b = Math.floor(Math.random() * 100);
-    numberImage.setAttribute('data-b', b);
-    let challengeElement = document.getElementById('challenge');
-    challengeElement.textContent = `Что будет ${a} + ${b}?`;
+    let numberString = a.toString() + "?" + b.toString(); // Генерация строки чисел с знаком вопроса
 
+    // Установка значения атрибута data-b картинки
+    let numberImage = document.getElementById('numberImage');
+    numberImage.setAttribute('data-b', numberString);
+
+    // Отображение числа a и знака вопроса в задании
+    let challengeElement = document.getElementById('challenge');
+    challengeElement.textContent = `Что будет ${a} + ?`;
+
+    // Таймер на 3 секунды
+    let timeLeft = 3;
+    let timerElement = document.getElementById('timer');
+    timerElement.textContent = timeLeft;
+
+    let timer = setInterval(function() {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            document.getElementById('submitBtn').disabled = true;
+            timerElement.textContent = "Время вышло!";
+        } else {
+            timerElement.textContent = timeLeft;
+        }
+        timeLeft -= 1;
+    }, 1000);
+
+    // Обработчик отправки формы
     let form = document.getElementById('puzzleForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
+        // Получение ответа пользователя
         let answer = parseInt(document.getElementById('answer').value);
-        let actualB = parseInt(numberImage.getAttribute('data-b'));
 
-        if (b !== actualB) {
-            document.getElementById('message').textContent = "Ошибка: число b не совпадает с атрибутом изображения!";
-        } else if (answer === a + b) {
+        // Проверка правильности ответа
+        if (answer === a + b) {
             document.getElementById('message').textContent = "Ты молодец!";
         } else {
             document.getElementById('message').textContent = "Неправильный ответ!";
         }
     });
 });
+
 
     </script>
 </body>
