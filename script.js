@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Получение значений a и b из атрибута data-b
-    let a = 44; // Предполагается, что число a уже известно
-    let b = parseInt(document.getElementById('numberImage').getAttribute('data-b'));
+    // Генерация случайного числа a и числа b для атрибута картинки
+    let a = Math.floor(Math.random() * 100);
+    let b = Math.floor(Math.random() * 100);
 
-    // Отображение числа a и знака вопроса в задании
+    // Установка значения атрибута data-b картинки
+    let numberImage = document.getElementById('numberImage');
+    numberImage.setAttribute('data-b', b);
+
+    // Установка значения для числа a в задании
     let challengeElement = document.getElementById('challenge');
     challengeElement.textContent = `What is ${a} + ?`;
 
@@ -34,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Проверка правильности ответа и вывод сообщения
         let messageElement = document.getElementById('message');
         if (answer === a + b) {
-            messageElement.textContent = "You guessed it! Well done!";
+            messageElement.textContent = "Вот это да ты что крутой что ли ?";
         } else {
-            messageElement.textContent = "Incorrect answer!";
+            messageElement.textContent = "Дааа, считать ты явно не умеешь, лучше не мешай котику!!!";
         }
 
         // Блокируем дальнейший ввод и отправку формы
