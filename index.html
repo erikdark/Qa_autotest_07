@@ -1,110 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Числовая загадка с картинкой</title>
-    <style>
-      body {
-    font-family: sans-serif;
-}
-
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.big-number {
-    font-size: 2em;
-    margin: 20px 0;
-}
-
-input[type="text"] {
-    margin: 10px 0;
-    padding: 10px;
-    width: calc(100% - 22px);
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-#message {
-    margin-top: 20px;
-    font-size: 1.2em;
-}
-
-    </style>
+    <title>Помоги котику решить задачу</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Числовая загадка</h1>
-        <img id="numberImage" src="0bKwJ8.jpg" alt="Random Number" data-b="0">
-        <div id="challenge" class="big-number">Что будет a + b?</div>
+        <h1>Угадай сумму</h1>
+        <div id="challenge" class="big-number">Что будет 44 + ?</div>
+        <img id="numberImage" src="0bKwJ8.jpg" data-b="29" alt="Number Image">
         <form id="puzzleForm">
-            <input type="text" id="answer" placeholder="Введите ответ" required>
+            <input type="number" id="answer" placeholder="Enter your answer" required>
             <button type="submit" id="submitBtn">Отправить</button>
         </form>
         <p id="message"></p>
+        <p id="timer">3</p>
     </div>
-    <script>
-   document.addEventListener('DOMContentLoaded', function() {
-    // Генерация случайного числа a и числа b для атрибута картинки
-    let a = Math.floor(Math.random() * 100);
-    let b = Math.floor(Math.random() * 100);
-
-    // Установка значения атрибута data-b картинки
-    let numberImage = document.getElementById('numberImage');
-    numberImage.setAttribute('data-b', b);
-
-    // Отображение числа a и знака вопроса в задании
-    let challengeElement = document.getElementById('challenge');
-    challengeElement.textContent = `Что будет ${a} + ?`;
-
-    // Таймер на 3 секунды
-    let timeLeft = 3;
-    let timerElement = document.getElementById('timer');
-    timerElement.textContent = timeLeft;
-
-    let timer = setInterval(function() {
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            document.getElementById('submitBtn').disabled = true;
-            timerElement.textContent = "Время вышло!";
-        } else {
-            timerElement.textContent = timeLeft;
-        }
-        timeLeft -= 1;
-    }, 1000);
-
-    // Обработчик отправки формы
-    let form = document.getElementById('puzzleForm');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Получение ответа пользователя
-        let answer = parseInt(document.getElementById('answer').value);
-
-        // Проверка правильности ответа
-        if (answer === a + b) {
-            document.getElementById('message').textContent = "Ты молодец!";
-        } else {
-            document.getElementById('message').textContent = "Неправильный ответ!";
-        }
-
-        // Блокируем дальнейший ввод и отправку формы
-        document.getElementById('submitBtn').disabled = true;
-    });
-});
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
