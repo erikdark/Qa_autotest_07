@@ -56,19 +56,18 @@ button {
         <p id="message"></p>
     </div>
     <script>
-     document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     // Генерация случайного числа a и числа b для атрибута картинки
     let a = Math.floor(Math.random() * 100);
     let b = Math.floor(Math.random() * 100);
-    let numberString = a.toString() + "?" + b.toString(); // Генерация строки чисел с знаком вопроса
 
     // Установка значения атрибута data-b картинки
     let numberImage = document.getElementById('numberImage');
-    numberImage.setAttribute('data-b', numberString);
+    numberImage.setAttribute('data-b', b);
 
-    // Отображение числа a и знака вопроса в задании
+    // Отображение числа a и числа b в задании
     let challengeElement = document.getElementById('challenge');
-    challengeElement.textContent = `Что будет ${a} + ?`;
+    challengeElement.textContent = `Что будет ${a} + ${b}?`;
 
     // Таймер на 3 секунды
     let timeLeft = 3;
@@ -102,7 +101,6 @@ button {
         }
     });
 });
-
 
 
     </script>
